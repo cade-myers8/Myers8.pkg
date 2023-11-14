@@ -1,5 +1,5 @@
 Package: Myers.pkg
-Title: An R package for processing shrubbery data
+Title: An R package explaining the relationship of variables in our Rodents surveys dataset.
 Version: 1.0.0
 Authors@R: c(
   person(given = "Cade",
@@ -13,10 +13,11 @@ Depends:
   R (>= 2.10)
 Imports: 
   tidyverse, broom
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Suggests:
   knitr, 
   rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+
