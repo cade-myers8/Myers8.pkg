@@ -7,7 +7,7 @@ Authors@R: c(
         role = c("cre", "aut"),
         email = "cade.myers@selu.edu") 
         )
-Description: An R package to process plant data. Most functions accept numerical input and allow usersallow users to calculate a varitey of data. The data inputed to this function will offer numerical dataregarding shrubbery plants in their respective ecosystems. Users can use this data and widely used stats such as whatever, this and that, and some other stuff
+Description: An R package to process rodent data. Most functions accept numerical input and allow users to calculate a varitey of data to understand rodents characterisitics.
 License: MIT + file LICENSE
 Depends: 
   R (>= 2.10)
