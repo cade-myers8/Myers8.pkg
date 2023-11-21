@@ -11,7 +11,9 @@
 #' @export
 
 
-
+manova_project <- function(surveys, weight, hindfoot_length, sex){
 manova_model <- manova(cbind(weight, hindfoot_length) ~ sex, surveys)
 manova_model
 summary(manova_model) 
+return(manova_model)
+}
