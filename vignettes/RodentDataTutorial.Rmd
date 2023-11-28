@@ -9,6 +9,108 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Introduction to My R Package for Processing Rodent Data
 
-Something about what my R Package does. Maybe say something about what data youll use
-If youre working with a partner, you can put their name
+This R package helps user work with functions to process and analyze Rodent data. The functions used include clearing non applicable data from dataset, generates a graph plot, gives a statistical Manova analysis, deviates numerical values, and records number of rodents present at each plot type. Also, user can input different data columns of choice to retrieve the desired analytical information as needed.
+
+## Installing R Package for Rodent Data
+
+To install the R package, copy and paste the following code in to the console:
+
+```{r}
+devtools::install_github("cade-myers8/Myers8.pkg")
+```
+
+## Other Packages to Install: 
+
+```{r}
+install.packages("tidyverse")
+```
+
+## How to Download Surveys Data for R Package
+
+To download your data, click on the upload button in the "Files" tab in your R window. After, select the .csv file that containes the rodent surveys dataset. To make the data functional in R, copy and paste the following codes individually into your console. 
+
+```{r, eval=FALSE}
+#install.packages("googlesheets4")
+library(googlesheets4)
+googlesheets4::gs4_deauth()
+surveys <- read_sheet("https://docs.google.com/spreadsheets/d/1cQE-_Bssdiq-ZbdTwIghmV8uXB5PKANkJudfiIqnNaQ/edit?usp=sharing")
+```
+
+## Functions In This Package and How To Use Them
+
+Available in this package is five functions. In this section, we will get to see each function and go through how and why you might use them.
+
+## Cleaning Irrelevent Data
+
+This function is an omitting data function. The function's goal is to remove any unnecessary values, which in this case, this function removes NA values. Before using a function, the purpose of clearing data from a data set is important because NA values can be read as a ZERO value. Hence, any further calculations may contain false information about your recorded data.
+
+```{r}
+remove_nas <- function(surveys, hindfoot_length){
+  rodents <- surveys %>% 
+    na.omit(surveys) %>% 
+    select(hindfoot_length)
+  if(is.numeric(surveys$hindfoot_length) == TRUE){
+    return(rodents)
+  }else{
+    print("error")
+ }
+}
+```
+
+## Graphing Data
+
+In our second function, we have a function that makes a graph plot. A graphing function is useful in constructing a comparative analysis between two columns of data. The function below evaluates the difference in hindfoot length between the opposite sex. This function looks how size might differ between rodents and if it may propose an advantage. 
+
+```{r}
+graphplot_project <- function(surveys, sex, hindfoot_length){
+  gpp <- ggplot(data=surveys, mapping = aes(x = sex, y = hindfoot_length)) + geom_point(alpha = 0.1, aes(color = species_id))
+  return(gpp)
+}
+```
+
+## Count Plot Type
+
+Below we used a count function. In this function, the main goal is to see which plot type saw the most activity from rodents.
+
+```{r}
+plot_count_project <- function(surveys, plot_type){
+plot_count <- surveys %>% 
+na.omit() %>% 
+count(plot_type) %>% 
+return(plot_count)
+}
+```
+
+## Statiscal Function: Manova
+
+In our next function, we will use Manova, which is a statistical analysis. A Manova analysis evaluate the correlation between the independent variable and what ways does it change the dependent variable.
+
+```{r}
+manova_project <- function(surveys, weight, sex, hindfoot_length){
+manova_model <- manova(cbind(weight, hindfoot_length) ~ sex, surveys)
+manova_model
+summary(manova_model)
+return(manova_model)
+}
+```
+
+## Manipulating Data into Numerical Analysis
+
+This function uses standard deviation to evaluate data drawn from the data set. The numerical input uses standard deviation as way to analyze how dispersed a set of data is. The function will return a numerical value as a way to tell the relation of data points whether they are in close proximity or not.
+
+```{r}
+stddev_project <- function(surveys, species_id, weight){
+weight_sd <- surveys %>% 
+na.omit() %>% 
+group_by(species_id) %>% 
+summarize(mean = mean(weight), standard_deviation = sd(weight))
+return(weight_sd)
+}
+```
+
+
+
+
+

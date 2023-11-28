@@ -10,7 +10,6 @@
 #' @export
 
 
-
 graphplot_project <- function(surveys, sex, hindfoot_length){
   gpp <- ggplot(data = surveys, mapping = aes(x = sex, y = hindfoot_length)) + geom_col()  
   return(gpp)
