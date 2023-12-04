@@ -4,7 +4,7 @@
 \alias{graphplot_project}
 \title{Graph relationship between sex and hindfoot length}
 \usage{
-graphplot_project(data, sex, hindfoot_length)
+graphplot_project(surveys, sex, hindfoot_length)
 }
 \arguments{
 \item{sex}{Sex of rodents}
